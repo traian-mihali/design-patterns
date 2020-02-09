@@ -1,5 +1,6 @@
 package com.designpatterns;
 
+import com.designpatterns.iterator.BrowseHistory;
 import com.designpatterns.memento.Editor;
 import com.designpatterns.memento.History;
 import com.designpatterns.state.BrushTool;
@@ -40,6 +41,19 @@ public class Main {
         canvas.setCurrentTool(new SelectionTool());
         canvas.mouseDown(); // output: Select icon
         canvas.mouseUp(); // Draw a dashed rectangle
+
+        // Iterator PATTERN
+        var browseHistory = new BrowseHistory();
+        browseHistory.push("https://google.com");
+        browseHistory.push("https://gmail.com");
+        browseHistory.push("https://youtube.com");
+
+        var iterator = browseHistory.createIterator();
+
+        while (iterator.hasNext()){
+            System.out.println(iterator.current());
+            iterator.next();
+        }
     }
 }
 
