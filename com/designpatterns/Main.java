@@ -2,6 +2,10 @@ package com.designpatterns;
 
 import com.designpatterns.memento.Editor;
 import com.designpatterns.memento.History;
+import com.designpatterns.state.BrushTool;
+import com.designpatterns.state.Canvas;
+import com.designpatterns.state.EraserTool;
+import com.designpatterns.state.SelectionTool;
 
 public class Main {
 
@@ -21,7 +25,21 @@ public class Main {
         editor.restoreState(history.pop());
         editor.restoreState(history.pop());
 
-        System.out.println(editor.getContent()); // output: first state
+        // System.out.println(editor.getContent()); // output: first state
+
+        // State PATTERN
+        var canvas = new Canvas();
+        canvas.setCurrentTool(new BrushTool());
+        canvas.mouseDown(); // output: Brush icon
+        canvas.mouseUp(); // output: Draw a line
+
+        canvas.setCurrentTool(new EraserTool());
+        canvas.mouseDown(); // output: Erase icon
+        canvas.mouseUp(); // output: Erase content
+
+        canvas.setCurrentTool(new SelectionTool());
+        canvas.mouseDown(); // output: Select icon
+        canvas.mouseUp(); // Draw a dashed rectangle
     }
 }
 
