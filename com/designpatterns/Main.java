@@ -7,6 +7,7 @@ import com.designpatterns.state.BrushTool;
 import com.designpatterns.state.Canvas;
 import com.designpatterns.state.EraserTool;
 import com.designpatterns.state.SelectionTool;
+import com.designpatterns.strategy.*;
 
 public class Main {
 
@@ -54,6 +55,11 @@ public class Main {
             System.out.println(iterator.current());
             iterator.next();
         }
+
+        // Strategy PATTERN
+        var imageStorage = new ImageStorage();
+        imageStorage.store("portrait", new JpegCompressor(), new BlackAndWhiteFilter());
+        imageStorage.store("portrait", new PngCompressor(), new BlackAndWhiteFilter());
     }
 }
 
