@@ -8,6 +8,10 @@ import com.designpatterns.state.Canvas;
 import com.designpatterns.state.EraserTool;
 import com.designpatterns.state.SelectionTool;
 import com.designpatterns.strategy.*;
+import com.designpatterns.template.AuditTrail;
+import com.designpatterns.template.GenerateReportTask;
+import com.designpatterns.template.Task;
+import com.designpatterns.template.TransferMoneyTask;
 
 public class Main {
 
@@ -60,6 +64,14 @@ public class Main {
         var imageStorage = new ImageStorage();
         imageStorage.store("portrait", new JpegCompressor(), new BlackAndWhiteFilter());
         imageStorage.store("portrait", new PngCompressor(), new BlackAndWhiteFilter());
+
+        // Template PATTERN
+        var transferMoney = new TransferMoneyTask();
+        transferMoney.execute();
+
+        var generateReport = new GenerateReportTask();
+        generateReport.execute();
+
     }
 }
 
