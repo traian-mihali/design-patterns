@@ -1,5 +1,11 @@
 package com.designpatterns;
 
+import com.designpatterns.command.AddCustomerCommand;
+import com.designpatterns.command.CustomerService;
+import com.designpatterns.command.composite.BlackAndWhiteCommand;
+import com.designpatterns.command.composite.CompositeCommand;
+import com.designpatterns.command.composite.ResizeCommand;
+import com.designpatterns.command.fx.Button;
 import com.designpatterns.iterator.BrowseHistory;
 import com.designpatterns.memento.Editor;
 import com.designpatterns.memento.History;
@@ -8,9 +14,7 @@ import com.designpatterns.state.Canvas;
 import com.designpatterns.state.EraserTool;
 import com.designpatterns.state.SelectionTool;
 import com.designpatterns.strategy.*;
-import com.designpatterns.template.AuditTrail;
 import com.designpatterns.template.GenerateReportTask;
-import com.designpatterns.template.Task;
 import com.designpatterns.template.TransferMoneyTask;
 
 public class Main {
@@ -71,6 +75,18 @@ public class Main {
 
         var generateReport = new GenerateReportTask();
         generateReport.execute();
+
+        // Command pattern
+        var service = new CustomerService();
+        var command = new AddCustomerCommand(service);
+        var button = new Button(command);
+        button.click();
+
+        var composite = new CompositeCommand();
+        composite.add(new BlackAndWhiteCommand());
+        composite.add(new ResizeCommand());
+
+        composite.execute();
 
     }
 }
