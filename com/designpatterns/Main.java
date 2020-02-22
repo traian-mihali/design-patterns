@@ -120,6 +120,9 @@ public class Main {
         // Mediator pattern
         var dialog = new ArticleDialogBox();
         dialog.simulateUserInteraction();
+
+        // using an observer
+
     }
 }
 
