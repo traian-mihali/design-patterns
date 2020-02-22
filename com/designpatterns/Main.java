@@ -1,5 +1,7 @@
 package com.designpatterns;
 
+import com.designpatterns.chainOfResponsability.*;
+import com.designpatterns.chainOfResponsability.Compressor;
 import com.designpatterns.command.AddCustomerCommand;
 import com.designpatterns.command.CustomerService;
 import com.designpatterns.command.composite.BlackAndWhiteCommand;
@@ -121,8 +123,16 @@ public class Main {
         var dialog = new ArticleDialogBox();
         dialog.simulateUserInteraction();
 
-        // using an observer
+        // ChainOfResponsability pattern
+        // Authenticator -> Logger -> Compressor -> Encryptor
+        var encryptor = new Encryptor(null);
+        var compressor = new Compressor(encryptor);
+        var logger = new Logger(compressor);
+        var authenticator = new Authenticator(logger);
+        var server = new WebServer(authenticator);
+        var request = new HttpRequest("admin", "1234");
 
+        server.handle(request);
     }
 }
 
