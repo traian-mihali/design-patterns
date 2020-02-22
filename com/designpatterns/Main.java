@@ -9,6 +9,7 @@ import com.designpatterns.command.editor.BoldCommand;
 import com.designpatterns.command.editor.HtmlDocument;
 import com.designpatterns.command.fx.Button;
 import com.designpatterns.iterator.BrowseHistory;
+import com.designpatterns.mediator.ArticleDialogBox;
 import com.designpatterns.memento.Editor;
 import com.designpatterns.memento.History;
 import com.designpatterns.observer.Chart;
@@ -115,6 +116,10 @@ public class Main {
         dataSource.addObserver(chart);
 
         dataSource.setValue(1);
+
+        // Mediator pattern
+        var dialog = new ArticleDialogBox();
+        dialog.simulateUserInteraction();
     }
 }
 
