@@ -5,6 +5,8 @@ import com.designpatterns.command.CustomerService;
 import com.designpatterns.command.composite.BlackAndWhiteCommand;
 import com.designpatterns.command.composite.CompositeCommand;
 import com.designpatterns.command.composite.ResizeCommand;
+import com.designpatterns.command.editor.BoldCommand;
+import com.designpatterns.command.editor.HtmlDocument;
 import com.designpatterns.command.fx.Button;
 import com.designpatterns.iterator.BrowseHistory;
 import com.designpatterns.memento.Editor;
@@ -88,6 +90,16 @@ public class Main {
 
         composite.execute();
 
+        var document = new HtmlDocument();
+        var historyCommands = new com.designpatterns.command.editor.History();
+        document.setContent("TEST");
+
+        var boldCommand = new BoldCommand(document, historyCommands);
+        boldCommand.execute();
+        System.out.println(document.getContent());
+
+        boldCommand.unexecute();
+        System.out.println(document.getContent());
     }
 }
 
