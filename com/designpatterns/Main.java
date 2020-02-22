@@ -11,6 +11,9 @@ import com.designpatterns.command.fx.Button;
 import com.designpatterns.iterator.BrowseHistory;
 import com.designpatterns.memento.Editor;
 import com.designpatterns.memento.History;
+import com.designpatterns.observer.Chart;
+import com.designpatterns.observer.DataSource;
+import com.designpatterns.observer.SpreadSheet;
 import com.designpatterns.state.BrushTool;
 import com.designpatterns.state.Canvas;
 import com.designpatterns.state.EraserTool;
@@ -100,6 +103,18 @@ public class Main {
 
         boldCommand.unexecute();
         System.out.println(document.getContent());
+
+        // Observer pattern
+        var dataSource = new DataSource();
+        var spread1 = new SpreadSheet(dataSource);
+        var spread2 = new SpreadSheet(dataSource);
+        var chart = new Chart(dataSource);
+
+        dataSource.addObserver(spread1);
+        dataSource.addObserver(spread2);
+        dataSource.addObserver(chart);
+
+        dataSource.setValue(1);
     }
 }
 
