@@ -24,6 +24,10 @@ import com.designpatterns.state.SelectionTool;
 import com.designpatterns.strategy.*;
 import com.designpatterns.template.GenerateReportTask;
 import com.designpatterns.template.TransferMoneyTask;
+import com.designpatterns.visitor.AnchorNode;
+import com.designpatterns.visitor.HeadingNode;
+import com.designpatterns.visitor.HighlightOperation;
+import com.designpatterns.visitor.PlainTextOperation;
 
 public class Main {
 
@@ -133,6 +137,16 @@ public class Main {
         var request = new HttpRequest("admin", "1234");
 
         server.handle(request);
+
+        // Visitor pattern
+        var headingNode = new HeadingNode();
+        var anchorNode = new AnchorNode();
+        var htmlDocument = new com.designpatterns.visitor.HtmlDocument();
+        htmlDocument.add(headingNode);
+        htmlDocument.add(anchorNode);
+
+        htmlDocument.execute(new HighlightOperation());
+        htmlDocument.execute(new PlainTextOperation());
     }
 }
 
