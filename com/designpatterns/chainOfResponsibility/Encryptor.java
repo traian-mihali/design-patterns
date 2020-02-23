@@ -1,4 +1,4 @@
-package com.designpatterns.chainOfResponsability;
+package com.designpatterns.chainOfResponsibility;
 
 public class Encryptor extends Handler {
     public Encryptor(Handler next) {

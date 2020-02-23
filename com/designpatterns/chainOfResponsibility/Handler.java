@@ -1,4 +1,4 @@
-package com.designpatterns.chainOfResponsability;
+package com.designpatterns.chainOfResponsibility;
 
 public abstract class Handler {
     private Handler next;

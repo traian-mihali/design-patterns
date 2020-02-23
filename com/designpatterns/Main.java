@@ -1,7 +1,7 @@
 package com.designpatterns;
 
-import com.designpatterns.chainOfResponsability.*;
-import com.designpatterns.chainOfResponsability.Compressor;
+import com.designpatterns.chainOfResponsibility.*;
+import com.designpatterns.chainOfResponsibility.Compressor;
 import com.designpatterns.command.AddCustomerCommand;
 import com.designpatterns.command.CustomerService;
 import com.designpatterns.command.composite.BlackAndWhiteCommand;
@@ -33,6 +33,8 @@ public class Main {
 
     public static void main(String[] args) {
         // Memento PATTERN
+        System.out.println("<----- Memento PATTERN ----->");
+
         var editor = new Editor();
         var history = new History();
 
@@ -47,9 +49,12 @@ public class Main {
         editor.restoreState(history.pop());
         editor.restoreState(history.pop());
 
-        // System.out.println(editor.getContent()); // output: first state
+        System.out.println(editor.getContent()); // output: first state
 
         // State PATTERN
+        System.out.println();
+        System.out.println("<----- State PATTERN ----->");
+
         var canvas = new Canvas();
         canvas.setCurrentTool(new BrushTool());
         canvas.mouseDown(); // output: Brush icon
@@ -64,6 +69,9 @@ public class Main {
         canvas.mouseUp(); // Draw a dashed rectangle
 
         // Iterator PATTERN
+        System.out.println();
+        System.out.println("<----- Iterator PATTERN ----->");
+
         var browseHistory = new BrowseHistory();
         browseHistory.push("https://google.com");
         browseHistory.push("https://gmail.com");
@@ -77,18 +85,27 @@ public class Main {
         }
 
         // Strategy PATTERN
+        System.out.println();
+        System.out.println("<----- Strategy PATTERN ----->");
+
         var imageStorage = new ImageStorage();
         imageStorage.store("portrait", new JpegCompressor(), new BlackAndWhiteFilter());
         imageStorage.store("portrait", new PngCompressor(), new BlackAndWhiteFilter());
 
         // Template PATTERN
+        System.out.println();
+        System.out.println("<----- Template PATTERN ----->");
+
         var transferMoney = new TransferMoneyTask();
         transferMoney.execute();
 
         var generateReport = new GenerateReportTask();
         generateReport.execute();
 
-        // Command pattern
+        // Command PATTERN
+        System.out.println();
+        System.out.println("<----- Command PATTERN ----->");
+
         var service = new CustomerService();
         var command = new AddCustomerCommand(service);
         var button = new Button(command);
@@ -111,7 +128,10 @@ public class Main {
         boldCommand.unexecute();
         System.out.println(document.getContent());
 
-        // Observer pattern
+        // Observer PATTERN
+        System.out.println();
+        System.out.println("<----- Observer PATTERN ----->");
+
         var dataSource = new DataSource();
         var spread1 = new SpreadSheet(dataSource);
         var spread2 = new SpreadSheet(dataSource);
@@ -123,12 +143,18 @@ public class Main {
 
         dataSource.setValue(1);
 
-        // Mediator pattern
+        // Mediator PATTERN
+        System.out.println();
+        System.out.println("<----- Mediator PATTERN  ----->");
+
         var dialog = new ArticleDialogBox();
         dialog.simulateUserInteraction();
 
-        // ChainOfResponsability pattern
+        // ChainOfResponsibility PATTERN
         // Authenticator -> Logger -> Compressor -> Encryptor
+        System.out.println();
+        System.out.println("<----- ChainOfResponsibility PATTERN ----->");
+
         var encryptor = new Encryptor(null);
         var compressor = new Compressor(encryptor);
         var logger = new Logger(compressor);
@@ -138,7 +164,10 @@ public class Main {
 
         server.handle(request);
 
-        // Visitor pattern
+        // Visitor PATTERN
+        System.out.println();
+        System.out.println("<----- Visitor PATTERN ----->");
+
         var headingNode = new HeadingNode();
         var anchorNode = new AnchorNode();
         var htmlDocument = new com.designpatterns.visitor.HtmlDocument();

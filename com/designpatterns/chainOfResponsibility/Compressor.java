@@ -1,4 +1,4 @@
-package com.designpatterns.chainOfResponsability;
+package com.designpatterns.chainOfResponsibility;
 
 public class Compressor extends Handler {
     public Compressor(Handler next) {
